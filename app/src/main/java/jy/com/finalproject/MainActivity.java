@@ -38,37 +38,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Define a LocationListener and request location updates
         makeLocationListener();
-        //Prepare retrofit
+        //Prepare retrofit to reverse geocode
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://maps.googleapis.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
+    //Button Listener
     public void buttonOneClick(View vv) {
-        System.out.println("1) *** Button is pressed ***");
-        /*//if
-        removeLocationUpdate();
-        makeLocationListener();*/
+        System.out.println("1) Button is pressed");
+        //Check whether the user wants to include location
         checkLocationOption();
         if (includeLocation == true){
-            System.out.println("3) this should be called each time the button is pressed");
+            //Create the argument for our query
             latlng = lat+","+lng;
+            //Begin the address lookup
             GetAddress.getAddress(latlng, retrofit);
         } else {
+            //If the user doesn't want to include location
+            //just send the preset message without it
             Report.report();
-            //just send the text
         }
     }
 
+    //Helper method to check if user wants to include location in their text
     public void checkLocationOption() {
         CheckBox locationOption = (CheckBox) findViewById(R.id.locationOption);
         if (locationOption.isChecked()) {
             includeLocation = true;
-            System.out.println("2) include location = true" + lat + lng);
+            System.out.println("2) User wants to include location");
         } else {
             includeLocation = false;
-            System.out.println("2) include location = false");
+            System.out.println("2) User does not want to include location");
         }
     }
 
@@ -202,8 +203,4 @@ public class MainActivity extends AppCompatActivity {
         //mGoogleApiClient.disconnect();
         super.onStop();
     }
-
-    //set location
-    //location = true
-    //if location true, pass via intent
 }

@@ -7,12 +7,14 @@ public class Report {
     private static String finalLocation;
     public static void report(String returnedAddress){
         finalLocation = returnedAddress;
-        System.out.println("Send text with final location: "+returnedAddress);
-        //Send this along with text
+        System.out.println("7) Send a text with final location: "+returnedAddress);
+        //Send this along with text.
+        //Ccall the texting function here, and pass in the returnedAddress
     }
 
     public static void report(){
-        System.out.println("Send text without a location.");
+        System.out.println("3) Send text without a location.");
         //Send text
+        //Call the texting function here
     }
 }
