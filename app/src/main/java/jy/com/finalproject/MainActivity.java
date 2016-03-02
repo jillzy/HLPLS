@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     float lng;
     public String latlng;
     public Retrofit retrofit;
+    private String returnedAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //Define a LocationListener and request location updates
         makeLocationListener();
         //Prepare retrofit
-            retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl("https://maps.googleapis.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("3) this should be called each time the button is pressed");
             latlng = lat+","+lng;
             GetAddress.getAddress(latlng, retrofit);
+        } else {
+            Report.report();
+            //just send the text
         }
     }
 

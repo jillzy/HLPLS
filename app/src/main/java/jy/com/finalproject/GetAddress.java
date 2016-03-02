@@ -12,7 +12,8 @@ import retrofit2.Retrofit;
  * Created by jy on 3/2/2016.
  */
 public class GetAddress {
-    public static void getAddress(String latlng, Retrofit retrofit) {
+    private static String returnedAddress;
+    public static void getAddress(final String latlng, Retrofit retrofit) {
         System.out.println("4) called getAddress()");
         GetAddressService getMessageService = retrofit.create(GetAddressService.class);
 
@@ -20,7 +21,7 @@ public class GetAddress {
         Call<Example> queryResponseCall =
                 getMessageService.path(latlng);
 
-        System.out.println("5) getAddres() knows latlng is "+ latlng);
+        System.out.println("5) getAddres() knows latlng is " + latlng);
 
         //Call retrofit asynchronously for GETTING messages
         queryResponseCall.enqueue(new Callback<Example>() {
@@ -30,15 +31,14 @@ public class GetAddress {
                 System.out.println("6) Got a json response");
                 System.out.println(responseObject.status);
                 if (responseObject.status.equals("OK")) {
-                    System.out.println("7) Address is: " + responseObject.results.get(0).formattedAddress);
-                }//Example responseObject = response.body();
-                /*
-                for (i =  responseObject.resultList.size()-1; i >= 0 ; i--) {
-                    System.out.println("Got a message with id: " + responseObject.resultList.get(i).userId);
-                    le.ndisplay = responseObject.resultList.get(i).nickname;
-                    le.mdisplay = responseObject.resultList.get(i).message;
-                    aList.add(le);
-                }*/
+                    returnedAddress = responseObject.results.get(0).formattedAddress
+                            +" at (LAT,LNG) " + latlng;
+                    System.out.println("7)returnedAddress");
+                    Report.report(returnedAddress);
+                } else {
+                    returnedAddress = latlng;
+                    Report.report(returnedAddress);
+                }
             }
 
             @Override
