@@ -3,6 +3,8 @@ package jy.com.finalproject;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,12 +16,20 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.Locale;
+
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     boolean includeLocation = false;
     boolean loc = false;
     float lat;
     float lng;
+    public String latlng;
+    public Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +37,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Define a LocationListener and request location updates
         makeLocationListener();
+        //Prepare retrofit
+            retrofit = new Retrofit.Builder()
+                .baseUrl("https://maps.googleapis.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public void buttonOneClick(View vv) {
-        System.out.println("checkLocationOption");
+        System.out.println("1) *** Button is pressed ***");
+        /*//if
+        removeLocationUpdate();
+        makeLocationListener();*/
         checkLocationOption();
+        if (includeLocation == true){
+            System.out.println("3) this should be called each time the button is pressed");
+            latlng = lat+","+lng;
+            GetAddress.getAddress(latlng, retrofit);
+        }
     }
 
     public void checkLocationOption() {
         CheckBox locationOption = (CheckBox) findViewById(R.id.locationOption);
         if (locationOption.isChecked()) {
             includeLocation = true;
-            System.out.println("include location = true" + lat + lng);
+            System.out.println("2) include location = true" + lat + lng);
         } else {
             includeLocation = false;
-            System.out.println("include location = false");
+            System.out.println("2) include location = false");
         }
     }
 
