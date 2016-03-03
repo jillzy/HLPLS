@@ -28,10 +28,20 @@
         android:text="Include Location"
         android:textColor="#CCCCCC"
         android:id="@+id/locationOption"
+        android:layout_marginBottom="86dp"
+        android:checked="false"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/buttonOne"
-        android:layout_alignStart="@+id/buttonOne"
-        android:layout_marginBottom="38dp"
+        android:layout_alignStart="@+id/buttonOne" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Turn off Configure Mode"
+        android:textOff="Turn on Configure Mode"
+        android:id="@+id/editModeButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:checked="false" />
 
 </RelativeLayout>
