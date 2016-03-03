@@ -54,13 +54,17 @@ public class SettingActivity extends AppCompatActivity {
                 try {
                     c = getContentResolver().query(uri, new String[]{
                                     ContactsContract.CommonDataKinds.Phone.NUMBER,
-                                    ContactsContract.CommonDataKinds.Phone.TYPE },
+                                    ContactsContract.CommonDataKinds.Phone.TYPE,
+                                    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME},
                             null, null, null);
 
                     if (c != null && c.moveToFirst()) {
                         String number = c.getString(0);
                         int type = c.getInt(1);
-                        showSelectedNumber(type, number);
+                        String name = c.getString(2);
+                        showSelectedNumber(type, number, name);
+                        saveSelectedNumber(type, number, name);
+
                     }
                 } finally {
                     if (c != null) {
@@ -71,7 +75,18 @@ public class SettingActivity extends AppCompatActivity {
         }
     }
 
-    public void showSelectedNumber(int type, String number) {
-        Toast.makeText(this, type + ": " + number, Toast.LENGTH_LONG).show();
+    public void showSelectedNumber(int type, String number, String name) {
+        //Type 2 indicates that it's a mobile number
+        if (type == 2) {
+            Toast.makeText(this, name +": " + number, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void saveSelectedNumber(int type, String number, String name) {
+        //Type 2 indicates that it's a mobile number
+        if (type == 2) {
+            //Change this to save the selected number into an object
+            //Show the name of the person chosen
+        }
     }
 }
