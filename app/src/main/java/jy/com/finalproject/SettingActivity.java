@@ -29,16 +29,15 @@ public class SettingActivity extends AppCompatActivity {
 
         //*********************************************//
         //           Choose from address book          //
+        //           Revised source code from:         //
         // http://stackoverflow.com/questions/4993063/ //
         //*********************************************//
 
         ((Button)findViewById(R.id.chooseContacts)).setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // user BoD suggests using Intent.ACTION_PICK instead of .ACTION_GET_CONTENT to avoid the chooser
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                // BoD con't: CONTENT_TYPE instead of CONTENT_ITEM_TYPE
-                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
                 startActivityForResult(intent, 1);
             }
         });
@@ -85,6 +84,9 @@ public class SettingActivity extends AppCompatActivity {
     public void saveSelectedNumber(int type, String number, String name) {
         //Type 2 indicates that it's a mobile number
         if (type == 2) {
+            System.out.println("Chose a contact");
+            System.out.println("The contact chosen is: " + name);
+            System.out.println(name+"'s phone number is "+number);
             //Change this to save the selected number into an object
             //Show the name of the person chosen
         }
