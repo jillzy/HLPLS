@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
+    private String names = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,11 @@ public class SettingActivity extends AppCompatActivity {
         //Type 2 indicates that it's a mobile number
         if (type == 2) {
             Toast.makeText(this, name +": " + number, Toast.LENGTH_LONG).show();
+            TextView chosenContactList = (TextView) findViewById(R.id.chosenContactList);
+            names += name+"\n";
+            chosenContactList.setText(names);
         }
+
     }
 
     public void saveSelectedNumber(int type, String number, String name) {
@@ -87,8 +93,11 @@ public class SettingActivity extends AppCompatActivity {
             System.out.println("Chose a contact");
             System.out.println("The contact chosen is: " + name);
             System.out.println(name+"'s phone number is "+number);
-            //Change this to save the selected number into an object
-            //Show the name of the person chosen
+
+
+            //TODO: Change this to save the selected number into an object
+
+            //TODO: Function that removes contacts
         }
     }
 }
