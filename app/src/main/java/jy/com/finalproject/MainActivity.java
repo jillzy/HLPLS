@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     float lng;
     public String latlng;
     public Retrofit retrofit;
+    public static ContactList contacts;
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
 
