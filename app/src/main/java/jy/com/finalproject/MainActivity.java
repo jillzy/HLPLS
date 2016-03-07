@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -93,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
     public void buttonEditOff() {
         //Check whether the user wants to include location
         checkLocationOption();
+
+        //set phone to vibrate when button is pressed
+        AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+
         if (includeLocation == true){
             //Create the argument for our query
             latlng = lat+","+lng;
