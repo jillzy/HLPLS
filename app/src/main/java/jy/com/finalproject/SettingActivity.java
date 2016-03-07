@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,11 +95,13 @@ public class SettingActivity extends AppCompatActivity {
             System.out.println("The contact chosen is: " + name);
             System.out.println(name+"'s phone number is "+number);
 
-
-
+            MainActivity.contacts.addContact(type, number, name);
+            Log.i("List", MainActivity.contacts.toString());
             //TODO: Change this to save the selected number into an object
-
+                // Done
             //TODO: Function that removes contacts
+                // Done
+                // MainActivity.contacts.deleteContact(phoneNumber);
         }
     }
 }
