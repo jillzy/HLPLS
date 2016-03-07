@@ -1,5 +1,6 @@
 package jy.com.finalproject;
 
+
 /**
  * Created by jy on 3/2/2016.
  */
@@ -16,5 +17,6 @@ public class Report {
         System.out.println("3) Send text without a location.");
         //Send text
         //Call the texting function here
+
     }
 }
