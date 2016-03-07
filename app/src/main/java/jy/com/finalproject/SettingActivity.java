@@ -95,6 +95,7 @@ public class SettingActivity extends AppCompatActivity {
             System.out.println(name+"'s phone number is "+number);
 
 
+
             //TODO: Change this to save the selected number into an object
 
             //TODO: Function that removes contacts
