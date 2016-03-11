@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.List;
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     public static ContactList contacts = new ContactList();
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
-    public String number = "5623251728";
-    public String sms = "Test Message";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //The button should send text
             buttonEditOff();
-//            SmsManager smsManager = SmsManager.getDefault();
-//            smsManager.sendTextMessage(number, null, sms, null, null);
+            String number = "5623251728";
+            String sms = "Test Message";
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(number, null, sms, null, null);
+            Toast.makeText(getApplicationContext(), "SMS Sent!",
+                    Toast.LENGTH_LONG).show();
         }
 
     }
