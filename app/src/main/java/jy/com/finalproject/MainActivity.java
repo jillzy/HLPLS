@@ -82,16 +82,20 @@ public class MainActivity extends AppCompatActivity {
             buttonEditOn();
         } else {
             //The button should send text
-            buttonEditOff();
             String number = "5623251728";
             String sms = "Test Message";
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(number, null, sms, null, null);
-            Toast.makeText(getApplicationContext(), "SMS Sent!",
-                    Toast.LENGTH_LONG).show();
+            sendMsg(number,sms);
+            buttonEditOff();
         }
 
     }
+
+    protected void sendMsg(String number, String message){
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(number, null, message, null, null);
+
+    }
+
     public void buttonEditOn() {
         //intent
         System.out.println("Pressed button with edit mode on");
