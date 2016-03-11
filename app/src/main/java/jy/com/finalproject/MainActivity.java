@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
             buttonEditOn();
         } else {
             //The button should send text
+            buttonEditOff();
             String number = "5623251728";
             String sms = "Test Message";
             sendMsg(number,sms);
-            buttonEditOff();
         }
 
     }
