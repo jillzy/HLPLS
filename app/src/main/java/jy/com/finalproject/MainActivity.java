@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     public static ContactList contacts = new ContactList();
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
+    public String number = null;
+    public String sms = "Test Message";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +86,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //The button should send text
             buttonEditOff();
-            String number = "5623251728";
-            String sms = "Test Message";
-            sendMsg(number,sms);
         }
 
     }
@@ -118,10 +117,18 @@ public class MainActivity extends AppCompatActivity {
             latlng = lat+","+lng;
             //Begin the address lookup
             GetAddress.getAddress(latlng, retrofit);
+
         } else {
             //If the user doesn't want to include location
             //just send the preset message without it
             Report.report();
+            if(number==null){
+                Toast.makeText(getApplicationContext(), "Please Enter a phone number in Config",
+                        Toast.LENGTH_LONG).show();
+            }
+            else {
+                sendMsg(number, sms);
+            }
 
         }
     }
