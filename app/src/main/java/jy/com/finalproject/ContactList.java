@@ -18,6 +18,10 @@ public class ContactList extends Application{
         contacts.add(n);
     }
 
+    public void addContact(Contact n) {
+        contacts.add(n);
+    }
+
     public void deleteContact(String number) {
         contacts.remove(contacts.indexOf(number));
     }

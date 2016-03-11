@@ -30,6 +30,21 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        Button submitNumberButton = (Button) findViewById(R.id.submitNumberButton);
+        submitNumberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //retrieve string from edit text
+                final EditText phoneNumber = (EditText) findViewById(R.id.phoneNumber);
+                //save the string in a var
+                String number = phoneNumber.getText().toString();
+                phoneNumber.setText("");
+                //saving stuff
+                Contact n = new Contact(2, number, null);
+                MainActivity.contacts.addContact(n);
+            }
+        });
+
         //*********************************************//
         //           Choose from address book          //
         //           Revised source code from:         //
