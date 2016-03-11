@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //The button should send text
             buttonEditOff();
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(number, null, sms, null, null);
         }
 
     }
@@ -111,8 +113,7 @@ public class MainActivity extends AppCompatActivity {
             //If the user doesn't want to include location
             //just send the preset message without it
             Report.report();
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(number, null, sms, null, null);
+
         }
     }
 
