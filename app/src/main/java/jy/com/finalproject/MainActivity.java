@@ -30,6 +30,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
     //whether or not the user has chosen to send their location
     boolean includeLocation = false;
     //whether or not a location has been retrieved
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     protected void sendMsg(String number, String message){
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(number, null, message, null, null);
@@ -145,6 +147,34 @@ public class MainActivity extends AppCompatActivity {
     protected void makeLocationListener() {
         //Acquire reference to system Location Manager
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.SEND_SMS)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
 
         //Explicitly check for permissions
         if (locationManager != null &&
