@@ -9,8 +9,9 @@ public class Texting {
     //String number = phoneNo.getText().toString();
     //String sms = messageBody.getText().toString();
 
+
+
     public void sendText() {
-            SmsManager smsManager = SmsManager.getDefault();
-            //smsManager.sendTextMessage(number, null, sms, null, null);
+
     }
 }
