@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //The button should send text
             buttonEditOff();
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(number, null, sms, null, null);
+//            SmsManager smsManager = SmsManager.getDefault();
+//            smsManager.sendTextMessage(number, null, sms, null, null);
         }
 
     }

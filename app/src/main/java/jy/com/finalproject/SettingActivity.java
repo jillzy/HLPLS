@@ -91,9 +91,12 @@ public class SettingActivity extends AppCompatActivity {
     public void saveSelectedNumber(int type, String number, String name) {
         //Type 2 indicates that it's a mobile number
         if (type == 2) {
+            MainActivity.contacts.addContact(type, number, name);
             System.out.println("Chose a contact");
-            System.out.println("The contact chosen is: " + name);
-            System.out.println(name+"'s phone number is "+number);
+            System.out.println("The contact chosen is: " +
+                    MainActivity.contacts.findContact(number).name);
+            System.out.println(MainActivity.contacts.findContact(number).name+"'s phone number is "+
+                    MainActivity.contacts.findContact(number).number);
 
             MainActivity.contacts.addContact(type, number, name);
             Log.i("List", MainActivity.contacts.toString());
