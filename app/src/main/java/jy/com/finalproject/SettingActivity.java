@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
     private String names = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +37,15 @@ public class SettingActivity extends AppCompatActivity {
                 final EditText phoneNumber = (EditText) findViewById(R.id.phoneNumber);
                 //save the string in a var
                 String number = phoneNumber.getText().toString();
-                phoneNumber.setText("");
+                phoneNumber.getText().clear();
+
+                final EditText message = (EditText) findViewById(R.id.textBody);
+                String mess = message.getText().toString();
+
+                message.getText().clear();
                 //saving stuff
-                Contact n = new Contact(2, number, null);
+                Contact n = new Contact(2, number, null, mess);
+                System.out.println(n.text);
                 MainActivity.contacts.addContact(n);
             }
         });
@@ -101,19 +106,24 @@ public class SettingActivity extends AppCompatActivity {
             names += name+"\n";
             chosenContactList.setText(names);
         }
-
     }
 
-    public String saveSelectedNumber(int type, String number, String name) {
+    public void saveSelectedNumber(int type, String number, String name) {
         //Type 2 indicates that it's a mobile number
         if (type == 2) {
-            MainActivity.contacts.addContact(type, number, name);
+            final EditText mess = (EditText) findViewById(R.id.textBody);
+            String message = mess.getText().toString();
+
+            Contact n = new Contact(type, number, name, message);
+            MainActivity.contacts.addContact(n);
             System.out.println("Chose a contact");
             System.out.println("The contact chosen is: " +
                     MainActivity.contacts.findContact(number).name);
             System.out.println(MainActivity.contacts.findContact(number).name + "'s phone number is " +
                     MainActivity.contacts.findContact(number).number);
+            System.out.println(MainActivity.contacts.findContact(number).name + "'s message is " +
+                    MainActivity.contacts.findContact(number).text);
+            mess.getText().clear();
         }
-        return number;
     }
 }

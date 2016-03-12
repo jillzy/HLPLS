@@ -7,9 +7,12 @@ package jy.com.finalproject;
 public class Report {
     private static String finalLocation;
     public static void report(String returnedAddress){
+        Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
+        System.out.println("Message: " + t.text);
+        System.out.print("Number: " + t.number);
         finalLocation = returnedAddress;
-        String number = "5623251728";
-        String sms = "Test Message"+returnedAddress;
+        String number = t.number;
+        String sms = t.text + " " + returnedAddress;
         System.out.println("7) Send a text with final location: "+returnedAddress);
         //Send this along with text.
         //Ccall the texting function here, and pass in the returnedAddress
@@ -17,8 +20,9 @@ public class Report {
     }
 
     public static void report(){
-        String number = "5623251728";
-        String sms = "Test Message";
+        Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
+        String number = t.number;
+        String sms = t.text;
         System.out.println("3) Send text without a location.");
         //Send text
         //Call the texting function here

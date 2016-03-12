@@ -22,6 +22,11 @@ public class ContactList extends Application{
         contacts.add(n);
     }
 
+    public void addContact(int type, String number, String name, String text) {
+        Contact n = new Contact(type, number, name, text);
+        contacts.add(n);
+    }
+
     public void deleteContact(String number) {
         for(int i = 0; i < contacts.size(); i++) {
             if(contacts.get(i).number == number) {

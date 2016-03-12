@@ -16,4 +16,11 @@ public class Contact {
         name = nam;
         text = "";
     }
+
+    public Contact(int typeP, String num, String nam, String message) {
+        type = typeP;
+        number = num;
+        name = nam;
+        text = message;
+    }
 }
