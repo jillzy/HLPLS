@@ -1,7 +1,7 @@
 package jy.com.finalproject;
 
 import android.app.Application;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
 public class ContactList extends Application{
     public List<Contact> contacts;
     public ContactList() {
-        contacts = null;
+        contacts = new ArrayList<Contact>();
     }
 
     public void addContact(int type, String number, String name) {
@@ -23,10 +23,20 @@ public class ContactList extends Application{
     }
 
     public void deleteContact(String number) {
-        contacts.remove(contacts.indexOf(number));
+        for(int i = 0; i < contacts.size(); i++) {
+            if(contacts.get(i).number == number) {
+                contacts.remove(i);
+            }
+        }
     }
 
     public Contact findContact(String number) {
-        return contacts.get(contacts.indexOf(number));
+        for(int i = 0; i < contacts.size(); i++) {
+            if(contacts.get(i).number == number) {
+                return contacts.get(i);
+            }
+        }
+        Contact empty = new Contact(-1, null, null);
+        return empty;
     }
 }

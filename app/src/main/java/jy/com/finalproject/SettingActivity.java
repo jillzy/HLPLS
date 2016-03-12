@@ -6,12 +6,12 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class SettingActivity extends AppCompatActivity {
     private String names = "";
@@ -57,6 +57,7 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
                 startActivityForResult(intent, 1);
+                System.out.println("Choosing contact");
             }
         });
     }
@@ -112,14 +113,6 @@ public class SettingActivity extends AppCompatActivity {
                     MainActivity.contacts.findContact(number).name);
             System.out.println(MainActivity.contacts.findContact(number).name+"'s phone number is "+
                     MainActivity.contacts.findContact(number).number);
-
-            MainActivity.contacts.addContact(type, number, name);
-            Log.i("List", MainActivity.contacts.toString());
-            //TODO: Change this to save the selected number into an object
-                // Done
-            //TODO: Function that removes contacts
-                // Done
-                // MainActivity.contacts.deleteContact(phoneNumber);
         }
     }
 }
