@@ -3,6 +3,7 @@ package jy.com.finalproject;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public String latlng;
     public Retrofit retrofit;
     public static ContactList contacts = new ContactList();
+
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
 
@@ -286,7 +288,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         //mGoogleApiClient.connect();
         super.onStart();
-
     }
 
     protected void onStop() {
