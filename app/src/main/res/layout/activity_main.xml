@@ -13,7 +13,6 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="New Button"
         android:textColor="#CCCCCC"
         android:id="@+id/buttonOne"
         android:layout_marginTop="40dp"
