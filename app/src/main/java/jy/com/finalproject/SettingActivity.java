@@ -52,6 +52,8 @@ public class SettingActivity extends AppCompatActivity {
                     Contact n = new Contact(2, number, null, mess);
                     System.out.println(n.text);
                     MainActivity.contacts.addContact(n);
+
+                    showSelectedNumber(2, number, number);
                 }
 
             }
