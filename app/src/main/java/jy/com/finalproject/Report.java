@@ -28,7 +28,7 @@ public class Report{
     }
 
     public static void report() {
-        if(MainActivity.savedNumStatic != null) {
+        if(MainActivity.savedNumStatic != null && MainActivity.savedTextStatic != null) {
             String number = MainActivity.savedNumStatic;
             String sms = MainActivity.savedTextStatic;
             System.out.println("3) Send text without a location.");

@@ -54,6 +54,8 @@ public class SettingActivity extends AppCompatActivity {
                     MainActivity.contacts.addContact(n);
 
                     showSelectedNumber(2, number, number);
+                    KeyValueDB.setNumber(aContext, MainActivity.contacts.findContact(number).number);
+                    KeyValueDB.setText(aContext, MainActivity.contacts.findContact(number).text);
                 }
 
             }

@@ -124,9 +124,8 @@ public class MainActivity extends AppCompatActivity {
             savedNum = KeyValueDB.getNumber(this);
             savedNumStatic = savedNum;
             savedText = KeyValueDB.getText(this);
-            savedTextStatic =savedText;
+            savedTextStatic = savedText;
             Report.report();
-
         }
     }
 
