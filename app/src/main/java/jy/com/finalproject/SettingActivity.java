@@ -1,8 +1,11 @@
 package jy.com.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,11 +18,12 @@ import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
     private String names = "";
+    Context aContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-
+        aContext = this;
         //Manually add in number
         ((EditText)findViewById(R.id.phoneNumber)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,7 @@ public class SettingActivity extends AppCompatActivity {
                     System.out.println(n.text);
                     MainActivity.contacts.addContact(n);
                 }
+
             }
         });
 
@@ -65,7 +70,7 @@ public class SettingActivity extends AppCompatActivity {
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
                 startActivityForResult(intent, 1);
                 System.out.println("Choosing contact");
-                
+
                 final EditText num = (EditText) findViewById(R.id.phoneNumber);
                 num.getText().clear();
             }
@@ -129,6 +134,8 @@ public class SettingActivity extends AppCompatActivity {
             System.out.println(MainActivity.contacts.findContact(number).name + "'s message is " +
                     MainActivity.contacts.findContact(number).text);
             mess.getText().clear();
+            KeyValueDB.setNumber(aContext, MainActivity.contacts.findContact(number).number);
+            KeyValueDB.setText(aContext, MainActivity.contacts.findContact(number).text);
         }
     }
 }

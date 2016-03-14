@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public String latlng;
     public Retrofit retrofit;
     public static ContactList contacts = new ContactList();
+    public String savedNum;
+    public static String savedNumStatic;
+    public String savedText;
+    public static String savedTextStatic;
 
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
@@ -110,18 +114,19 @@ public class MainActivity extends AppCompatActivity {
             latlng = lat+","+lng;
             //Begin the address lookup
             GetAddress.getAddress(latlng, retrofit);
-//            if(number==null){
-//                Toast.makeText(getApplicationContext(), "Please Enter a phone number in Config",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//            else {
-//                Texting.sendMsg(number, sms);
-//            }
-
+            savedNum = KeyValueDB.getNumber(this);
+            savedNumStatic = savedNum;
+            savedText = KeyValueDB.getText(this);
+            savedTextStatic =savedText;
         } else {
             //If the user doesn't want to include location
             //just send the preset message without it
+            savedNum = KeyValueDB.getNumber(this);
+            savedNumStatic = savedNum;
+            savedText = KeyValueDB.getText(this);
+            savedTextStatic =savedText;
             Report.report();
+
         }
     }
 
@@ -136,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("2) User does not want to include location");
         }
     }
-
 
     //*******************************************************//
     //                                                       //

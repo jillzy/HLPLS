@@ -8,7 +8,7 @@ import android.telephony.SmsManager;
 public class Texting {
 
     protected static void sendMsg(String number, String message) {
-        if(number != null) {
+        if(MainActivity.savedNumStatic != null) {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(number, null, message, null, null);
         }

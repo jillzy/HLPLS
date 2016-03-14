@@ -1,29 +1,36 @@
 package jy.com.finalproject;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by jy on 3/2/2016.
  */
-public class Report {
+public class Report{
     private static String finalLocation;
+    private Context context;
+
+    public Report(Context context){
+        this.context = context;
+    }
+
     public static void report(String returnedAddress){
-        Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
-        System.out.println("Message: " + t.text);
-        System.out.print("Number: " + t.number);
-        finalLocation = returnedAddress;
-        String number = t.number;
-        String sms = t.text + " " + returnedAddress;
-        System.out.println("7) Send a text with final location: "+returnedAddress);
-        //Send this along with text.
-        //Ccall the texting function here, and pass in the returnedAddress
-        Texting.sendMsg(number,sms);
+        if(MainActivity.savedNumStatic != null) {
+            finalLocation = returnedAddress;
+            String number = MainActivity.savedNumStatic;
+            String sms = MainActivity.savedTextStatic + " " + returnedAddress;
+            System.out.println("7) Send a text with final location: " + returnedAddress);
+            //Send this along with text.
+            //Ccall the texting function here, and pass in the returnedAddress
+            Texting.sendMsg(number, sms);
+        }
     }
 
     public static void report() {
-        if(MainActivity.contacts.contacts.size() > 0) {
-            Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
-            String number = t.number;
-            String sms = t.text;
+        if(MainActivity.savedNumStatic != null) {
+            String number = MainActivity.savedNumStatic;
+            String sms = MainActivity.savedTextStatic;
             System.out.println("3) Send text without a location.");
             //Send text
             //Call the texting function here
