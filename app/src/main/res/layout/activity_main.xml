@@ -37,8 +37,8 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Turn off Configure Mode"
-        android:textOff="Turn on Configure Mode"
+        android:textOn="Turn off Contact Editor"
+        android:textOff="Turn on Contact Editor"
         android:id="@+id/editModeButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
