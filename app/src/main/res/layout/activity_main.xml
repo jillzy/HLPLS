@@ -19,7 +19,8 @@
         android:background="@drawable/circle_button"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="buttonOneClick"/>
+        android:onClick="buttonOneClick"
+        />
 
     <CheckBox
         android:layout_width="wrap_content"

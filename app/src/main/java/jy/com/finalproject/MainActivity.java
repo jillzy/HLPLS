@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,13 +20,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.graphics.drawable.DrawableUtils;
 import android.telephony.SmsManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.content.res.Resources.Theme;
+import android.view.View.OnTouchListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +41,7 @@ import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
     //whether or not the user has chosen to send their location
@@ -49,10 +61,25 @@ public class MainActivity extends AppCompatActivity {
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
 
+    public Animation animScale;
+    public Animation animAlpha;
+    //int pinkC;
+    // this goes somewhere in your class:
+    long lastDown;
+    long lastDuration;
+    ToggleButton editModeButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this.requestWindowFeature(R.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+
+        animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+        animAlpha = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
+        //colorPress = R.color.fade_press;
         //Define a LocationListener and request location updates
         makeLocationListener();
         //Prepare retrofit to reverse geocode
@@ -63,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Define the edit mode button
         ToggleButton editModeButton = (ToggleButton) findViewById(R.id.editModeButton);
+        //colorTest = (backgroud)editModeButton.getBackground();
         editModeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             //Callback function, keeps track of what the current mode is
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -77,13 +105,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
 
     //Button Listener
     public void buttonOneClick(View vv) {
         System.out.println("1) Button is pressed");
+        System.out.println("Begin animation");
+        vv.startAnimation(animScale);
+        //vv.startAnimation(animAlpha);
+        //pinkC = Color.parseColor("#d5a6bd");
+        //if ()
+        //vv.setBackgroundColor(Color.parseColor("#d5a6bd"));
         if (editMode) {
             //The button goes to config page
             buttonEditOn();
