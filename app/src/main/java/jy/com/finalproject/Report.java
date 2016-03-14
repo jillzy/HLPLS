@@ -19,13 +19,15 @@ public class Report {
         Texting.sendMsg(number,sms);
     }
 
-    public static void report(){
-        Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
-        String number = t.number;
-        String sms = t.text;
-        System.out.println("3) Send text without a location.");
-        //Send text
-        //Call the texting function here
-        Texting.sendMsg(number,sms);
+    public static void report() {
+        if(MainActivity.contacts.contacts.size() > 0) {
+            Contact t = MainActivity.contacts.contacts.get(MainActivity.contacts.contacts.size() - 1);
+            String number = t.number;
+            String sms = t.text;
+            System.out.println("3) Send text without a location.");
+            //Send text
+            //Call the texting function here
+            Texting.sendMsg(number, sms);
+        }
     }
 }

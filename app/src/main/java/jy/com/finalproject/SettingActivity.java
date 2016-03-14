@@ -42,11 +42,13 @@ public class SettingActivity extends AppCompatActivity {
                 final EditText message = (EditText) findViewById(R.id.textBody);
                 String mess = message.getText().toString();
 
-                message.getText().clear();
-                //saving stuff
-                Contact n = new Contact(2, number, null, mess);
-                System.out.println(n.text);
-                MainActivity.contacts.addContact(n);
+                if(number != null) {
+                    message.getText().clear();
+                    //saving stuff
+                    Contact n = new Contact(2, number, null, mess);
+                    System.out.println(n.text);
+                    MainActivity.contacts.addContact(n);
+                }
             }
         });
 
@@ -63,6 +65,9 @@ public class SettingActivity extends AppCompatActivity {
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
                 startActivityForResult(intent, 1);
                 System.out.println("Choosing contact");
+                
+                final EditText num = (EditText) findViewById(R.id.phoneNumber);
+                num.getText().clear();
             }
         });
     }
