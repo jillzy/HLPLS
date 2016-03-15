@@ -121,7 +121,7 @@ public class SettingActivity extends AppCompatActivity {
             names += name+"\n";
             chosenContactList.setText(names);
         }
-        MainActivity.displayContacts2();
+        //MainActivity.displayContacts2();
     }
 
     public void saveSelectedNumber(int type, String number, String name) {

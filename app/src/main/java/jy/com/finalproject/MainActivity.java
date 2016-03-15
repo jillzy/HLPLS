@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         //this.requestWindowFeature(R.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        contact_display = (TextView)findViewById(R.id.contact_display_txt);
+        //contact_display = (TextView)findViewById(R.id.contact_display_txt);
         contacts = new ContactList();
 
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
@@ -157,11 +157,11 @@ public class MainActivity extends AppCompatActivity {
             Report.report();
         }
     }
-
+/*
     public static void displayContacts2() {
         StringBuilder yeah = ContactList.displayContacts();
         contact_display.setText(yeah);
-    }
+    }*/
 
     //Helper method to check if user wants to include location in their text
     public void checkLocationOption() {

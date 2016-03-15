@@ -44,7 +44,7 @@ public class ContactList extends Application{
         Contact empty = new Contact(-1, null, null);
         return empty;
     }
-
+/*
     public static StringBuilder displayContacts() {
         StringBuilder builder = new StringBuilder();
         for (Contact contact : contacts) {
@@ -55,5 +55,5 @@ public class ContactList extends Application{
             }
         }
         return builder;
-    }
+    }*/
 }
