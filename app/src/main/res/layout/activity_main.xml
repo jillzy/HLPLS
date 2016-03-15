@@ -14,13 +14,27 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:textColor="#CCCCCC"
+        android:text="HLPLS"
         android:id="@+id/buttonOne"
+        android:textSize="30dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/circle_button"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:onClick="buttonOneClick"
         />
+
+    <TextView
+        android:id="@+id/contact_display_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:textAlignment="center"
+        android:layout_below="@+id/buttonOne"
+        android:layout_above="@+id/locationOption"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <CheckBox
         android:layout_width="wrap_content"

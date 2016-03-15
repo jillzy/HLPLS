@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     float lng;
     public String latlng;
     public Retrofit retrofit;
-    public static ContactList contacts = new ContactList();
+    public static ContactList contacts;
     public String savedNum;
     public static String savedNumStatic;
     public String savedText;
@@ -63,11 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Animation animScale;
     public Animation animAlpha;
-    //int pinkC;
-    // this goes somewhere in your class:
-    long lastDown;
-    long lastDuration;
     ToggleButton editModeButton;
+
+    TextView contact_display;
 
 
     @Override
@@ -76,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         //this.requestWindowFeature(R.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        contact_display = (TextView)findViewById(R.id.contact_display_txt);
+        contacts = new ContactList();
 
         animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
         animAlpha = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Define the edit mode button
         ToggleButton editModeButton = (ToggleButton) findViewById(R.id.editModeButton);
-        //colorTest = (backgroud)editModeButton.getBackground();
         editModeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             //Callback function, keeps track of what the current mode is
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -113,11 +112,9 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("1) Button is pressed");
         System.out.println("Begin animation");
         vv.startAnimation(animScale);
-        //vv.startAnimation(animAlpha);
-        //pinkC = Color.parseColor("#d5a6bd");
-        //if ()
         //vv.setBackgroundColor(Color.parseColor("#d5a6bd"));
         if (editMode) {
+            displayContacts2();
             //The button goes to config page
             buttonEditOn();
         } else {
@@ -160,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
             savedTextStatic = savedText;
             Report.report();
         }
+    }
+
+    public void displayContacts2() {
+        StringBuilder yeah = ContactList.displayContacts();
+        contact_display.setText(yeah);
     }
 
     //Helper method to check if user wants to include location in their text

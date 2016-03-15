@@ -8,7 +8,7 @@ import java.util.List;
  * Created by InvaderZim on 3/6/2016.
  */
 public class ContactList extends Application{
-    public List<Contact> contacts;
+    public static List<Contact> contacts;
     public ContactList() {
         contacts = new ArrayList<Contact>();
     }
@@ -43,5 +43,17 @@ public class ContactList extends Application{
         }
         Contact empty = new Contact(-1, null, null);
         return empty;
+    }
+
+    public static StringBuilder displayContacts() {
+        StringBuilder builder = new StringBuilder();
+        for (Contact contact : contacts) {
+            if (contact.name == null ) {
+                builder.append(contact.number+ "\n");
+            } else {
+                builder.append(contact.name + "\n");
+            }
+        }
+        return builder;
     }
 }
