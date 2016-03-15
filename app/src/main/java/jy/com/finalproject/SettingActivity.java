@@ -33,6 +33,23 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        final EditText num = (EditText) findViewById(R.id.phoneNumber);
+        num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                num.getText().clear();
+            }
+        });
+
+        final EditText msg = (EditText) findViewById(R.id.textBody);
+        msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msg.getText().clear();
+            }
+        });
+
+
         Button submitNumberButton = (Button) findViewById(R.id.submitNumberButton);
         submitNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
