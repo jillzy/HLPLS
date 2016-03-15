@@ -119,6 +119,7 @@ public class SettingActivity extends AppCompatActivity {
             TextView chosenContactList = (TextView) findViewById(R.id.chosenContactList);
             names += name+"\n";
             chosenContactList.setText(names);
+            MainActivity.displayContacts2();
         }
     }
 

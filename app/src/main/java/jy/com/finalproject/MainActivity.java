@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public Animation animAlpha;
     ToggleButton editModeButton;
 
-    TextView contact_display;
+    static TextView contact_display;
 
 
     @Override
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         vv.startAnimation(animScale);
         //vv.setBackgroundColor(Color.parseColor("#d5a6bd"));
         if (editMode) {
-            displayContacts2();
             //The button goes to config page
             buttonEditOn();
         } else {
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void displayContacts2() {
+    public static void displayContacts2() {
         StringBuilder yeah = ContactList.displayContacts();
         contact_display.setText(yeah);
     }
