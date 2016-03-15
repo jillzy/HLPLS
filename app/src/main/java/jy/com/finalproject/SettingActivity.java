@@ -77,6 +77,7 @@ public class SettingActivity extends AppCompatActivity {
 
                 final EditText num = (EditText) findViewById(R.id.phoneNumber);
                 num.getText().clear();
+
             }
         });
     }
@@ -119,8 +120,8 @@ public class SettingActivity extends AppCompatActivity {
             TextView chosenContactList = (TextView) findViewById(R.id.chosenContactList);
             names += name+"\n";
             chosenContactList.setText(names);
-            MainActivity.displayContacts2();
         }
+        MainActivity.displayContacts2();
     }
 
     public void saveSelectedNumber(int type, String number, String name) {
@@ -141,6 +142,7 @@ public class SettingActivity extends AppCompatActivity {
             mess.getText().clear();
             KeyValueDB.setNumber(aContext, MainActivity.contacts.findContact(number).number);
             KeyValueDB.setText(aContext, MainActivity.contacts.findContact(number).text);
+            //MainActivity.displayContacts2();
         }
     }
 }
