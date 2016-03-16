@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public static String savedNumStatic;
     public String savedText;
     public static String savedTextStatic;
-    Location currentBestLocation;
 
     //flag that determines what happens when button is pushed
     private boolean editMode = false;
@@ -89,14 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        
 
-        lat = (float)currentBestLocation.getLatitude();
-        lng = (float)currentBestLocation.getLongitude();
-        //Check the accuracy of the location
-        if (currentBestLocation.getAccuracy() <= 50) {
-            loc = true;
-        }
+
+
 
 
         //Define the edit mode button
@@ -229,7 +223,15 @@ public class MainActivity extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 //Use a cached location in the meantime before first location is received
-                currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                Location currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                lat = (float)currentBestLocation.getLatitude();
+                lng = (float)currentBestLocation.getLongitude();
+                //Check the accuracy of the location
+                if (currentBestLocation.getAccuracy() <= 50) {
+                    loc = true;
+                }
+
                 //Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 //Register the listener with the Location Manager to receive location updates. Start listening
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
@@ -279,6 +281,13 @@ public class MainActivity extends AppCompatActivity {
                             || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         //Use a cached location in the meantime before first location is received
                         Location currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                        lat = (float)currentBestLocation.getLatitude();
+                        lng = (float)currentBestLocation.getLongitude();
+                        //Check the accuracy of the location
+                        if (currentBestLocation.getAccuracy() <= 50) {
+                            loc = true;
+                        }
                         //Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         //Register the listener with the Location Manager to receive location updates. Start listening
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
