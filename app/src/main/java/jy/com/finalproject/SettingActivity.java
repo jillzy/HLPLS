@@ -78,13 +78,29 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        Button clearSettingsButton = (Button) findViewById(R.id.clearSettings);
+        clearSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.contacts.contacts.clear();
+                KeyValueDB.setText(aContext, null);
+                KeyValueDB.setNumber(aContext, null);
+                final EditText mess = (EditText) findViewById(R.id.textBody);
+                final EditText phone = (EditText) findViewById(R.id.phoneNumber);
+                final TextView contacts = (TextView) findViewById(R.id.chosenContactList);
+                mess.getText().clear();
+                phone.getText().clear();
+                contacts.setText("");
+            }
+        });
+
         //*********************************************//
         //           Choose from address book          //
         //           Revised source code from:         //
         // http://stackoverflow.com/questions/4993063/ //
         //*********************************************//
 
-        ((Button)findViewById(R.id.chooseContacts)).setOnClickListener( new View.OnClickListener() {
+        ((Button)findViewById(R.id.chooseContacts)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
