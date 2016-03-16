@@ -224,12 +224,13 @@ public class MainActivity extends AppCompatActivity {
                     || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 //Use a cached location in the meantime before first location is received
                 Location currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-                lat = (float)currentBestLocation.getLatitude();
-                lng = (float)currentBestLocation.getLongitude();
-                //Check the accuracy of the location
-                if (currentBestLocation.getAccuracy() <= 50) {
-                    loc = true;
+                if (currentBestLocation != null) {
+                    lat = (float)currentBestLocation.getLatitude();
+                    lng = (float)currentBestLocation.getLongitude();
+                    //Check the accuracy of the location
+                    if (currentBestLocation.getAccuracy() <= 50) {
+                        loc = true;
+                    }
                 }
 
                 //Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -282,11 +283,13 @@ public class MainActivity extends AppCompatActivity {
                         //Use a cached location in the meantime before first location is received
                         Location currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-                        lat = (float)currentBestLocation.getLatitude();
-                        lng = (float)currentBestLocation.getLongitude();
-                        //Check the accuracy of the location
-                        if (currentBestLocation.getAccuracy() <= 50) {
-                            loc = true;
+                        if (currentBestLocation != null) {
+                            lat = (float)currentBestLocation.getLatitude();
+                            lng = (float)currentBestLocation.getLongitude();
+                            //Check the accuracy of the location
+                            if (currentBestLocation.getAccuracy() <= 50) {
+                                loc = true;
+                            }
                         }
                         //Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         //Register the listener with the Location Manager to receive location updates. Start listening
