@@ -78,7 +78,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        Button clearSettingsButton = (Button) findViewById(R.id.clearSettings);
+        Button clearSettingsButton = (Button)findViewById(R.id.clearSettings);
         clearSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
